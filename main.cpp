@@ -242,8 +242,10 @@ int main(int argc, char* argv[]) {
     edges.push_back({1, 2});
     edges.push_back({1, 3});
 
-    //Reorder results
+    //Perform breadth first search algorithm
     std::vector<int> results = bfs(num_vertices, num_edges, edges, s);
+
+    //Print results
     int size_results = results.size();
     for(int i = 0; i < size_results; ++i) {
         printf("results[%i]: %i\n", i, results[i]);
