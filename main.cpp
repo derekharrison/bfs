@@ -184,24 +184,16 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
     //Perform bfs algorithm
     Queue Q;
     node node_elem = graph[1];
-    try {
-        Q.enqueue(node_elem);
-    }
-    catch(std::string s) {
-        std::cout << s << std::endl;
-    }
+    try { Q.enqueue(node_elem); }
+    catch(std::string s) { std::cout << s << std::endl; }
 
     int head = Q.get_head();
     int tail = Q.get_tail();
     int size_queue = tail - head;
     while(size_queue > 0) {
 
-        try {
-            node_elem = Q.dequeue();
-        }
-        catch(std::string s) {
-            std::cout << s << std::endl;
-        }
+        try { node_elem = Q.dequeue(); }
+        catch(std::string s) { std::cout << s << std::endl; }
 
         node* curr_node = &graph[node_elem.index];
 
@@ -215,12 +207,8 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
                 adj_node->d = curr_node->d + 1;
                 adj_node->pi = curr_node;
 
-                try {
-                    Q.enqueue(*adj_node);
-                }
-                catch(std::string s) {
-                    std::cout << s << std::endl;
-                }
+                try { Q.enqueue(*adj_node); }
+                catch(std::string s) { std::cout << s << std::endl; }
             }
         }
 
