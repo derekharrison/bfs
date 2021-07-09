@@ -51,7 +51,6 @@ public:
     Queue();
     void enqueue(node);
     node dequeue();
-    void print_queue();
     int get_head();
     int get_tail();
 };
@@ -109,12 +108,6 @@ node Queue::dequeue() {
     }
 
     return element;
-}
-
-void Queue::print_queue() {
-    for(int n = 0; n < this->size; ++n) {
-        printf("%i: %i\tassed: %i\n", n, this->array[n].value, this->array[n].assed);
-    }
 }
 
 int Queue::get_head() {
