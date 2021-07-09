@@ -223,15 +223,9 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
     for(int i = 1; i < num_vertices + 1; ++i) {
         int it = 1;
         int index_inverse = index_map_inverse[graph[it].index];
-        while(index_inverse != i) {
-            it++;
-            index_inverse = index_map_inverse[graph[it].index];
-        }
+        while(index_inverse != i) { it++; index_inverse = index_map_inverse[graph[it].index]; }
         int index_tr = index_map[i];
-        if(index_inverse == i && i != s) {
-            results.push_back(graph[index_tr].d);
-        }
-        else {}
+        if(index_inverse == i && i != s) { results.push_back(graph[index_tr].d); }
     }
 
     return results;
