@@ -254,7 +254,7 @@ int main(int argc, char* argv[]) {
     //Print results
     int size_results = results.size();
     for(int i = 0; i < size_results; ++i) {
-        printf("results[%i]: %i\n", i, results[i]);
+        std::cout << results[i] << std::endl;
     }
 
     return 0;
