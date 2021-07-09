@@ -184,7 +184,12 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
     //Perform bfs algorithm
     Queue Q;
     node node_elem = graph[1];
-    Q.enqueue(node_elem);
+    try {
+        Q.enqueue(node_elem);
+    }
+    catch(std::string s) {
+        std::cout << s << std::endl;
+    }
 
     int head = Q.get_head();
     int tail = Q.get_tail();
