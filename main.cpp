@@ -45,15 +45,15 @@ private:
     int size;
     queue_array* array;
 
-    void Check_overflow();
-    void Check_underflow();
+    void check_overflow();
+    void check_underflow();
 public:
     Queue();
-    void Enqueue(node);
-    node Dequeue();
-    void Print_queue();
-    int Get_head();
-    int Get_tail();
+    void enqueue(node);
+    node dequeue();
+    void print_queue();
+    int get_head();
+    int get_tail();
 };
 
 Queue::Queue() {
@@ -68,22 +68,22 @@ Queue::Queue() {
     }
 }
 
-void Queue::Check_overflow() {
+void Queue::check_overflow() {
     if((this->tail == this->head) && (this->array[this->tail].assed == ASSED)) {
         throw "stack overflow";
     }
     else {};
 }
 
-void Queue::Check_underflow() {
+void Queue::check_underflow() {
     if(this->tail == this->head && this->array[this->head].assed == UNASSED) {
         throw "stack underflow";
     }
     else {};
 }
 
-void Queue::Enqueue(node element) {
-    Queue::Check_overflow();
+void Queue::enqueue(node element) {
+    Queue::check_overflow();
     if(this->tail == this->size - 1) {
         this->array[this->tail].elem = element;
         this->array[this->tail].assed = ASSED;
@@ -96,8 +96,8 @@ void Queue::Enqueue(node element) {
     }
 }
 
-node Queue::Dequeue() {
-    Queue::Check_underflow();
+node Queue::dequeue() {
+    Queue::check_underflow();
     node element = this->array[this->head].elem;
     if(this->head == this->size - 1) {
         this->array[this->head].assed = UNASSED;
@@ -111,17 +111,17 @@ node Queue::Dequeue() {
     return element;
 }
 
-void Queue::Print_queue() {
+void Queue::print_queue() {
     for(int n = 0; n < this->size; ++n) {
         printf("%i: %i\tassed: %i\n", n, this->array[n].value, this->array[n].assed);
     }
 }
 
-int Queue::Get_head() {
+int Queue::get_head() {
     return this->head;
 }
 
-int Queue::Get_tail() {
+int Queue::get_tail() {
     return this->tail;
 }
 
@@ -184,13 +184,13 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
     //Perform bfs algorithm
     Queue Q;
     node node_elem = graph[1];
-    Q.Enqueue(node_elem);
+    Q.enqueue(node_elem);
 
-    int head = Q.Get_head();
-    int tail = Q.Get_tail();
+    int head = Q.get_head();
+    int tail = Q.get_tail();
     int size_queue = tail - head;
     while(size_queue > 0) {
-        node_elem = Q.Dequeue();
+        node_elem = Q.dequeue();
         node* curr_node = &graph[node_elem.index];
 
         int num_adj_nodes = node_elem.adj_nodes.size();
@@ -202,13 +202,13 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
                 adj_node->color = GRAY;
                 adj_node->d = curr_node->d + 1;
                 adj_node->pi = curr_node;
-                Q.Enqueue(*adj_node);
+                Q.enqueue(*adj_node);
             }
         }
 
         curr_node->color = BLACK;
-        head = Q.Get_head();
-        tail = Q.Get_tail();
+        head = Q.get_head();
+        tail = Q.get_tail();
         size_queue = tail - head;
     }
 
