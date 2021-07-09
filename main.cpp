@@ -190,7 +190,14 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
     int tail = Q.get_tail();
     int size_queue = tail - head;
     while(size_queue > 0) {
-        node_elem = Q.dequeue();
+
+        try {
+            node_elem = Q.dequeue();
+        }
+        catch(std::string s) {
+            std::cout << s << std::endl;
+        }
+
         node* curr_node = &graph[node_elem.index];
 
         int num_adj_nodes = node_elem.adj_nodes.size();
@@ -202,7 +209,13 @@ std::vector<int> bfs(int n, int m, std::vector<std::vector<int>> edges, int s) {
                 adj_node->color = GRAY;
                 adj_node->d = curr_node->d + 1;
                 adj_node->pi = curr_node;
-                Q.enqueue(*adj_node);
+
+                try {
+                    Q.enqueue(*adj_node);
+                }
+                catch(std::string s) {
+                    std::cout << s << std::endl;
+                }
             }
         }
 
